@@ -7,6 +7,8 @@ from aiogram.client.default import DefaultBotProperties
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from ..utils.read_yaml import read_views
+
 
 class Settings(BaseSettings):
     telegram_api_token: SecretStr
@@ -19,3 +21,5 @@ settings = Settings()
 my_logger = logger
 
 anonymous_bot = Bot(token=settings.telegram_api_token.get_secret_value(), default=DefaultBotProperties(parse_mode='HTML'))
+
+views = read_views()
