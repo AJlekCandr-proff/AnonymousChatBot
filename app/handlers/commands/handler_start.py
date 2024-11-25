@@ -17,4 +17,4 @@ async def handler_start(message: Message) -> None:
     :param message: Объект класса Message.
     """
 
-    await message.answer(views.get('start_msg'))
+    await message.answer(text=views.get('start_msg'))

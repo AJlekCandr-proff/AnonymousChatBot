@@ -12,7 +12,7 @@ def read_views() -> dict[str, str]:
 
     data = {}
 
-    for files in os.walk(f'../../views'):
+    for files in os.walk(f'views/'):
         for file in files[2]:
             if file.endswith('.yaml'):
                 data.update(safe_load(open('views/' + file, 'r', encoding='UTF8')))
