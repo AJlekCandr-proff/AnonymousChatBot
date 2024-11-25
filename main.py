@@ -26,4 +26,8 @@ async def start(bot: Bot) -> None:
 
 
 if __name__ == '__main__':
-    asyncio.run(start(anonymous_bot))
+    try:
+        asyncio.run(start(anonymous_bot))
+
+    except KeyboardInterrupt:
+        my_logger.info('Bot was stopped!')

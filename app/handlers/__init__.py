@@ -1,6 +1,6 @@
 from aiogram import Router
 
-from commands import router as router_commands
+from .commands import router as router_commands
 
 
 router = Router(name=__name__)
