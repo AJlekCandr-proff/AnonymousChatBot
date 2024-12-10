@@ -5,5 +5,5 @@ from pydantic import BaseModel, PositiveInt
 
 class User(BaseModel):
     telegram_id: PositiveInt
-    fullname: str
+    full_name: str
     date: datetime = datetime.now()

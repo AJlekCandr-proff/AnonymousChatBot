@@ -19,7 +19,7 @@ async def handler_start_search(message: Message) -> None:
     """
 
     try:
-        await add_user(User(telegram_id=message.from_user.id, fullname=message.from_user.full_name))
+        await add_user(User(telegram_id=message.from_user.id, full_name=message.from_user.full_name))
 
         await message.answer(text=views.get('search_msg'))
 
