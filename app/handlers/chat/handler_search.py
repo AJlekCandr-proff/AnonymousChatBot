@@ -2,7 +2,9 @@ from aiogram import Router
 from aiogram.types import Message
 
 from app.filters.filters_chat import StartSearchFilter
-from app.config.settings import views
+from app.config.settings import views, my_logger
+from app.database.CRUDs.insert_user import add_user
+from app.validation.model_user import User
 
 
 router = Router(name=__name__)
@@ -16,4 +18,10 @@ async def handler_start_search(message: Message) -> None:
     :param message: Объект класса Message,
     """
 
-    await message.answer(text=views.get('search_msg'))
+    try:
+        await add_user(User(telegram_id=message.from_user.id, fullname=message.from_user.full_name))
+
+        await message.answer(text=views.get('search_msg'))
+
+    except ValueError:
+        return my_logger.error(f'Ошибка валидации, при добавлении пользователя {message.from_user.id}')

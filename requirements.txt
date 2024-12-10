@@ -5,3 +5,4 @@ loguru~=0.7.2
 PyYAML~=6.0.2
 SQLAlchemy~=2.0.36
 alembic~=1.14.0
+asyncpg~=0.30.0
