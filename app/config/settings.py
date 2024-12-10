@@ -6,12 +6,14 @@ from aiogram import Bot
 from aiogram.client.default import DefaultBotProperties
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import PostgresDsn
 
 from ..utils.read_yaml import read_views
 
 
 class Settings(BaseSettings):
     telegram_api_token: SecretStr
+    data_base_url: PostgresDsn
 
     model_config = SettingsConfigDict(env_file='.env')
 
