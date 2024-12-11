@@ -33,7 +33,7 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
                 return dialog.append(companion)
 
             else:
-                my_logger.info(f'По случайности с пользователем {user} произошла ошибка в поиске!')
+                my_logger.info(f'По случайности с пользователем {user.telegram_id} произошла ошибка в поиске!')
 
         else:
             await asyncio.sleep(5)
