@@ -1,9 +1,9 @@
 from sqlalchemy import insert
 
-from asyncpg import UniqueViolationError
+from asyncpg.exceptions import UniqueViolationError
 
 from app.validation.model_user import User
-from app.config.settings import session_maker, my_logger
+from app.config.settings import async_session, my_logger
 from app.database.models import *
 
 
@@ -16,7 +16,7 @@ async def add_user(user: User) -> None:
     """
 
     try:
-        async with session_maker() as session:
+        async with async_session() as session:
             query = insert(SearchCompanion).values(user.model_dump())
 
             await session.execute(query)

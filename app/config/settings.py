@@ -30,4 +30,4 @@ views = read_views()
 
 async_engine = create_async_engine(url=settings.data_base_url.unicode_string())
 
-session_maker = async_sessionmaker(async_engine, expire_on_commit=False, autocommit=False)
+async_session = async_sessionmaker(async_engine, expire_on_commit=False, autocommit=False)
