@@ -13,7 +13,7 @@ async def choice_companion(user: User) -> tuple[User, User]:
     :return: Кортеж из двух пользователей диалога.
     """
 
-    dialog = []
+    dialog = [user]
 
     users = await selects_users()
 
@@ -21,4 +21,4 @@ async def choice_companion(user: User) -> tuple[User, User]:
         if len(users) > 1:
             companion = random.choice(users)
 
-            return dialog.append(companion, user)
+            return dialog.append(companion)
