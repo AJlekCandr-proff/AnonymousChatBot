@@ -20,11 +20,13 @@ async def handler_start_search(message: Message) -> None:
     """
 
     try:
-        await add_user(User(telegram_id=message.from_user.id, full_name=message.from_user.full_name))
+        user = User(telegram_id=message.from_user.id, full_name=message.from_user.full_name)
 
     except ValueError:
         return my_logger.error(f'Ошибка валидации, при добавлении пользователя {message.from_user.id}')
 
+    await add_user(user)
+
     await message.answer(text=views.get('search_msg'))
 
-    await choice_companion(message.from_user.id)
+    await choice_companion(message, user)

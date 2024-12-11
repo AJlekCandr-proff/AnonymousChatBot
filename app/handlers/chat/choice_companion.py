@@ -1,14 +1,20 @@
+import asyncio
+
 import random
+
+from aiogram.types import Message
 
 from app.validation.model_user import User
 from app.database.CRUDs.select_users import selects_users
+from app.config.settings import my_logger, views
 
 
-async def choice_companion(user: User) -> tuple[User, User]:
+async def choice_companion(message: Message, user: User) -> tuple[User, User]:
     """
     Асинхронная функция для реализации выборки случайного собеседника.
 
     :param user: ID пользователя.
+    :param message: Объект класса Message.
 
     :return: Кортеж из двух пользователей диалога.
     """
@@ -18,7 +24,20 @@ async def choice_companion(user: User) -> tuple[User, User]:
     users = await selects_users()
 
     while len(users) > 0:
-        if len(users) > 1:
-            companion = random.choice(users)
+        if len(users) > 1 and users:
+            companion: User = random.choice(users)
 
-            return dialog.append(companion)
+            if companion.telegram_id != user.telegram_id:
+                my_logger.info(f'Нашлись 2 собеседника для диалога: {[companion.telegram_id, user.telegram_id]}')
+
+                return dialog.append(companion)
+
+            else:
+                my_logger.info(f'По случайности с пользователем {user} произошла ошибка в поиске!')
+
+        else:
+            await asyncio.sleep(5)
+
+            await message.answer(text=views.get('error_search'))
+
+            my_logger.info('Недостаточно пользователей в базе данных, повторный поиск...')
