@@ -5,6 +5,7 @@ from app.filters.filters_chat import StartSearchFilter
 from app.config.settings import views, my_logger
 from app.database.CRUDs.insert_user import add_user
 from app.validation.model_user import User
+from .choice_companion import choice_companion
 
 
 router = Router(name=__name__)
@@ -26,3 +27,4 @@ async def handler_start_search(message: Message) -> None:
 
     await message.answer(text=views.get('search_msg'))
 
+    await choice_companion(message.from_user.id)

@@ -1,6 +1,7 @@
 from sqlalchemy import insert
 
 from asyncpg.exceptions import UniqueViolationError
+from sqlalchemy.exc import IntegrityError
 
 from app.validation.model_user import User
 from app.config.settings import async_session, my_logger
@@ -25,5 +26,5 @@ async def add_user(user: User) -> None:
 
             return my_logger.info(f'Пользователь {user.telegram_id} добавлен в поиск собеседников!')
 
-    except UniqueViolationError:
+    except (IntegrityError, UniqueViolationError):
         my_logger.error(f'Ошибка уникальности, при добавлении пользователя {user.telegram_id}')
