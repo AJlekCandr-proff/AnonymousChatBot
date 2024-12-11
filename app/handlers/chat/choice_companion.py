@@ -4,16 +4,16 @@ from app.validation.model_user import User
 from app.database.CRUDs.select_users import selects_users
 
 
-async def choice_companion(user_id: int) -> tuple[User, User]:
+async def choice_companion(user: User) -> tuple[User, User]:
     """
     Асинхронная функция для реализации выборки случайного собеседника.
 
-    :param user_id: ID пользователя.
+    :param user: ID пользователя.
 
     :return: Кортеж из двух пользователей диалога.
     """
 
-    dialog = [user_id]
+    dialog = []
 
     users = await selects_users()
 
@@ -21,4 +21,4 @@ async def choice_companion(user_id: int) -> tuple[User, User]:
         if len(users) > 1:
             companion = random.choice(users)
 
-            return dialog.append(companion)
+            return dialog.append(companion, user)
