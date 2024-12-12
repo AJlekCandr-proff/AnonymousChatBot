@@ -19,7 +19,6 @@ async def handler_start_search(message: Message) -> None:
      Поиск собеседника и начинает диалог.
 
     :param message: Объект класса Message.
-    :param state: Объект класса FSMContext.
     """
 
     try:

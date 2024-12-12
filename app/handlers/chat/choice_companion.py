@@ -28,9 +28,11 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
             companion: User = random.choice(users)
 
             if companion.telegram_id != user.telegram_id:
+                dialog.append(companion)
+
                 my_logger.info(f'Нашлись 2 собеседника для диалога: {[companion.telegram_id, user.telegram_id]}')
 
-                return dialog.append(companion)
+                return dialog
 
             else:
                 my_logger.info(f'По случайности с пользователем {user.telegram_id} произошла ошибка в поиске!')
