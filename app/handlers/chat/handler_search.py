@@ -1,6 +1,5 @@
 from aiogram import Router
 from aiogram.types import Message
-from aiogram.fsm.context import FSMContext
 
 from app.filters.filters_chat import StartSearchFilter
 from app.config.settings import views, my_logger, anonymous_bot
