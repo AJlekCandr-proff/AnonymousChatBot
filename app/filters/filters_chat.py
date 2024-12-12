@@ -1,6 +1,8 @@
 from aiogram.filters import Filter
 from aiogram.types import Message
 
+from ..database.CRUDs.select_user import select_user
+
 
 class StartSearchFilter(Filter):
     async def __call__(self, message: Message) -> Message | None:
@@ -25,4 +27,5 @@ class ChatFilter(Filter):
         :return: Объект класса Message, либо None.
         """
 
-        pass
+        if await select_user(message.from_user.id):
+            return message
