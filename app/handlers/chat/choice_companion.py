@@ -13,7 +13,7 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
     """
     Асинхронная функция для реализации выборки случайного собеседника.
 
-    :param user: ID пользователя.
+    :param user: Профиль пользователя.
     :param message: Объект класса Message.
 
     :return: Кортеж из двух пользователей диалога.
