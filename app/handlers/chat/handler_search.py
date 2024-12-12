@@ -6,7 +6,7 @@ from app.config.settings import views, my_logger, anonymous_bot
 from app.database.CRUDs.insert_user import add_user
 from app.validation.model_user import User
 from app.database.CRUDs.add_new_dialog import add_new_dialog
-from .choice_companion import choice_companion
+from app.utils.choice_companion import choice_companion
 
 
 router = Router(name=__name__)
