@@ -2,6 +2,7 @@ from aiogram import Router
 from aiogram.types import Message
 
 from app.filters.filters_chat import ChatFilter
+from app.config.settings import anonymous_bot
 
 
 router = Router(name=__name__)
@@ -16,4 +17,5 @@ async def handler_messages_dialog(message: Message) -> None:
     :param message: Объект класса Message.
     """
 
+    await
     print(message.text)

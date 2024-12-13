@@ -23,8 +23,10 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
 
     users = await selects_users()
 
+    await message.answer(text=views.get('error_search')) if len(users) > 1 else None
+
     while len(users) > 0:
-        if len(users) > 1 and users:
+        if len(users) > 1:
             companion: User = random.choice(users)
 
             if companion.telegram_id != user.telegram_id:
@@ -39,7 +41,5 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
 
         else:
             await asyncio.sleep(5)
-
-            await message.answer(text=views.get('error_search'))
 
             my_logger.info('Недостаточно пользователей в базе данных, повторный поиск...')
