@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 
 from app.config.settings import my_logger, async_session
 from app.validation.model_user import User
-from ..models.dialog import Chats
+from ..models.chat import Chats
 
 
 async def add_new_dialog(companions: tuple[User, User]) -> None:

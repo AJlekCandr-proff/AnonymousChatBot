@@ -1,7 +1,7 @@
 from sqlalchemy import select
 
 from app.config.settings import async_session, my_logger
-from ..models.dialog import Chats
+from ..models.chat import Chats
 
 
 async def select_dialog(user_id: int) -> Chats | None:

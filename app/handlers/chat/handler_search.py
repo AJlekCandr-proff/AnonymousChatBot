@@ -6,7 +6,7 @@ from app.config.settings import views, my_logger, anonymous_bot
 from app.database.CRUDs.insert_user import add_user
 from app.keyboards.menu_keyboards import chat_menu
 from app.validation.model_user import User
-from app.database.CRUDs.add_new_dialog import add_new_dialog
+from app.database.CRUDs.add_new_dialogue import add_new_dialog
 from app.database.CRUDs.delete_user import delete_user_in_search
 from app.utils.choice_companion import choice_companion
 
