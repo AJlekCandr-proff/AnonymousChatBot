@@ -17,5 +17,4 @@ async def handler_messages_dialog(message: Message) -> None:
     :param message: Объект класса Message.
     """
 
-    await
     print(message.text)
