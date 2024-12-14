@@ -2,6 +2,7 @@ from aiogram import Router
 
 from .handler_search import router as router_search
 from .handler_dialogue import router as router_messages
+from .handler_stop import router as router_stop
 
 
 router = Router(name=__name__)
