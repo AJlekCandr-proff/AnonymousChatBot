@@ -1,6 +1,5 @@
 from aiogram.filters import Filter
 from aiogram.types import Message
-from aiogram.exceptions import TelegramBadRequest
 
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.database.CRUDs.select_users import selects_user
@@ -20,18 +19,20 @@ class StartSearchFilter(Filter):
 
 
 class SearchFilter(Filter):
-    async def __call__(self, message: Message) -> None:
+    async def __call__(self, message: Message) -> Message | None:
         """
         Асинхронный фильтр для проверки пользователя на состояние поиска собеседника.
 
         :param message: Объект класса Message.
+
+        :return: Объект класса Message, либо None.
         """
 
         if await selects_user(message.from_user.id) is None:
             return message
 
 
-class ChatFilter(Filter):
+class MessagesFilter(Filter):
     async def __call__(self, message: Message) -> dict[str, int] | None:
         """
         Асинхронный фильтр сообщений пользователя, которые состоят в диалоге с кем-либо.
@@ -48,3 +49,17 @@ class ChatFilter(Filter):
             companion: int = current_dialog.user_2 ^ current_dialog.user_1 ^ user_id
 
             return {'companion_id': companion}
+
+
+class StopChatFilter(Filter):
+    async def __call__(self, message: Message) -> Message | None:
+        """
+        Асинхронный фильтр нажатия кнопки завершения диалога "Стоп ❌".
+
+        :param message: Объект класса Message.
+
+        :return: Объект класса Message, либо None.
+        """
+
+        if message.text == 'Стоп ❌':
+            return message
