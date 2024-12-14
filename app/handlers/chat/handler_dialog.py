@@ -9,7 +9,7 @@ router = Router(name=__name__)
 
 
 @router.message(ChatFilter())
-async def handler_messages_dialog(message: Message) -> None:
+async def handler_messages_dialog(message: Message, companion: int) -> None:
     """
     Асинхронный обработчик сообщений пользователей, которые разговаривают с кем-либо.
     Пересылает сообщения собеседнику.
@@ -17,4 +17,4 @@ async def handler_messages_dialog(message: Message) -> None:
     :param message: Объект класса Message.
     """
 
-    print(message.text)
+    print(message.text, companion)

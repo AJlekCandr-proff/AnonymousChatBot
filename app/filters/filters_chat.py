@@ -1,7 +1,7 @@
 from aiogram.filters import Filter
 from aiogram.types import Message
 
-# from ..database.CRUDs.select_user import select_user
+from app.database.CRUDs.select_dialog import select_dialog
 
 
 class StartSearchFilter(Filter):
@@ -18,14 +18,19 @@ class StartSearchFilter(Filter):
 
 
 class ChatFilter(Filter):
-    async def __call__(self, message: Message) -> Message | None:
+    async def __call__(self, message: Message) -> dict[str, int] | None:
         """
         Асинхронный фильтр сообщений пользователя, которые состоят в диалоге с кем-либо.
 
         :param message: Объект класса Message.
 
-        :return: Объект класса Message, либо None.
+        :return: ID собеседника (аргумент для обработчика), либо None.
         """
 
-        if await select_user(message.from_user.id):
-            return message
+        user_id = message.from_user.id
+        current_dialog = await select_dialog(user_id)
+
+        if current_dialog:
+            companion: int = current_dialog.user_2 ^ current_dialog.user_1 ^ user_id
+
+            return {'companion': companion}
