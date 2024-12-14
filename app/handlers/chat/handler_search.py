@@ -4,7 +4,6 @@ from aiogram.types import Message
 from app.filters.filters_chat import StartSearchFilter, SearchFilter
 from app.config.settings import views, my_logger, anonymous_bot
 from app.database.CRUDs.insert_user import add_user
-from app.database.CRUDs.select_users import selects_user
 from app.validation.model_user import User
 from app.database.CRUDs.add_new_dialog import add_new_dialog
 from app.utils.choice_companion import choice_companion
