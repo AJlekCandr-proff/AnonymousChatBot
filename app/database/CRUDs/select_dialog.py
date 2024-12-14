@@ -17,7 +17,7 @@ async def select_dialog(user_id: int) -> Chats | None:
 
             result = await session.execute(query)
 
-            current_dialog: Chats = result.scalar()
+            current_dialog = result.scalar()
 
             return current_dialog
 

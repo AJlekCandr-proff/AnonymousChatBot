@@ -8,3 +8,9 @@ def start_menu() -> ReplyKeyboardMarkup:
     keyboard_builder.row(KeyboardButton(text='Премиум поиск'), KeyboardButton(text='📖 Интересы поиска'))
 
     return keyboard_builder.as_markup(resize_keyboard=True)
+
+
+def chat_menu() -> ReplyKeyboardMarkup:
+    keyboard_builder = ReplyKeyboardBuilder()
+
+    return keyboard_builder.row(KeyboardButton(text='Стоп ❌')).as_markup(resize_keyboard=True)

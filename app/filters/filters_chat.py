@@ -1,5 +1,6 @@
 from aiogram.filters import Filter
 from aiogram.types import Message
+from aiogram.exceptions import TelegramBadRequest
 
 from app.database.CRUDs.select_dialog import select_dialog
 from app.database.CRUDs.select_users import selects_user
@@ -28,9 +29,6 @@ class SearchFilter(Filter):
 
         if await selects_user(message.from_user.id) is None:
             return message
-
-        else:
-            await message.delete()
 
 
 class ChatFilter(Filter):

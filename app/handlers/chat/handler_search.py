@@ -4,6 +4,7 @@ from aiogram.types import Message
 from app.filters.filters_chat import StartSearchFilter, SearchFilter
 from app.config.settings import views, my_logger, anonymous_bot
 from app.database.CRUDs.insert_user import add_user
+from app.keyboards.menu_keyboards import chat_menu
 from app.validation.model_user import User
 from app.database.CRUDs.add_new_dialog import add_new_dialog
 from app.database.CRUDs.delete_user import delete_user_in_search
@@ -39,4 +40,8 @@ async def handler_start_search(message: Message) -> None:
     for companion in dialog_companions:
         await delete_user_in_search(companion.telegram_id)
 
-        await anonymous_bot.send_message(chat_id=companion.telegram_id, text=views.get('start_chat'))
+        await anonymous_bot.send_message(
+            chat_id=companion.telegram_id,
+            text=views.get('start_chat'),
+            reply_markup=chat_menu()
+        )
