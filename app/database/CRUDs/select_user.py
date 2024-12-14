@@ -10,7 +10,8 @@ async def select_user(user_id: int) -> User | None:
     Асинхронная функция для проверки, состоит ли пользователь в диалоге с кем-либо.
 
     :param user_id: Telegram ID пользователя.
-    :return:
+
+    :return: Объект класса User.
     """
 
     try:
