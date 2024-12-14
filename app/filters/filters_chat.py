@@ -33,4 +33,4 @@ class ChatFilter(Filter):
         if current_dialog:
             companion: int = current_dialog.user_2 ^ current_dialog.user_1 ^ user_id
 
-            return {'companion': companion}
+            return {'companion_id': companion}
