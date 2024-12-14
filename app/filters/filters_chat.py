@@ -2,6 +2,7 @@ from aiogram.filters import Filter
 from aiogram.types import Message
 
 from app.database.CRUDs.select_dialog import select_dialog
+from app.database.CRUDs.select_users import selects_user
 
 
 class StartSearchFilter(Filter):
@@ -15,6 +16,21 @@ class StartSearchFilter(Filter):
 
         if message.text == '🚀 Поиск случайного собеседника':
             return message
+
+
+class SearchFilter(Filter):
+    async def __call__(self, message: Message) -> None:
+        """
+        Асинхронный фильтр для проверки пользователя на состояние поиска собеседника.
+
+        :param message: Объект класса Message.
+        """
+
+        if await selects_user(message.from_user.id) is None:
+            return message
+
+        else:
+            await message.delete()
 
 
 class ChatFilter(Filter):

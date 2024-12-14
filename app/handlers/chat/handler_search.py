@@ -1,9 +1,10 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from app.filters.filters_chat import StartSearchFilter
+from app.filters.filters_chat import StartSearchFilter, SearchFilter
 from app.config.settings import views, my_logger, anonymous_bot
 from app.database.CRUDs.insert_user import add_user
+from app.database.CRUDs.select_users import selects_user
 from app.validation.model_user import User
 from app.database.CRUDs.add_new_dialog import add_new_dialog
 from app.utils.choice_companion import choice_companion
@@ -12,7 +13,7 @@ from app.utils.choice_companion import choice_companion
 router = Router(name=__name__)
 
 
-@router.message(StartSearchFilter())
+@router.message(StartSearchFilter(), SearchFilter())
 async def handler_start_search(message: Message) -> None:
     """
     Обработчик нажатия кнопки "🚀 Поиск случайного собеседника".
@@ -27,7 +28,7 @@ async def handler_start_search(message: Message) -> None:
     except ValueError:
         return my_logger.error(f'Ошибка валидации, при добавлении пользователя {message.from_user.id}')
 
-    # await add_user(user)
+    await add_user(user)
 
     await message.answer(text=views.get('search_msg'))
 
