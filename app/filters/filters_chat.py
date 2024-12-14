@@ -1,7 +1,7 @@
 from aiogram.filters import Filter
 from aiogram.types import Message
 
-from ..database.CRUDs.select_user import select_user
+# from ..database.CRUDs.select_user import select_user
 
 
 class StartSearchFilter(Filter):
