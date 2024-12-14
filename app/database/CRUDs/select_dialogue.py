@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, or_
 
 from app.config.settings import async_session, my_logger
 from ..models.chat import Chats
@@ -13,7 +13,7 @@ async def select_dialog(user_id: int) -> Chats | None:
 
     try:
         async with async_session() as session:
-            query = select(Chats).where(Chats.user_1 == user_id or Chats.user_2 == user_id)
+            query = select(Chats).where(or_(Chats.user_1 == user_id, Chats.user_2 == user_id))
 
             result = await session.execute(query)
 
