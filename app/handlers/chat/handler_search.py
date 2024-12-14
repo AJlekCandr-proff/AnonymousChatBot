@@ -27,7 +27,7 @@ async def handler_start_search(message: Message) -> None:
     except ValueError:
         return my_logger.error(f'Ошибка валидации, при добавлении пользователя {message.from_user.id}')
 
-    await add_user(user)
+    # await add_user(user)
 
     await message.answer(text=views.get('search_msg'))
 

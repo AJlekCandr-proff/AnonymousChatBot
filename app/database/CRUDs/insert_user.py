@@ -26,5 +26,5 @@ async def add_user(user: User) -> None:
 
             return my_logger.info(f'Пользователь {user.telegram_id} добавлен в поиск собеседников!')
 
-    except (IntegrityError, UniqueViolationError):
-        my_logger.error(f'Ошибка уникальности, при добавлении пользователя {user.telegram_id}')
+    except Exception as error:
+        my_logger.error(f'При добавлении пользователя в таблицу поиска собеседника произошла ошибка: {error}')
