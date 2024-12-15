@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from app.filters.filters_chat import StopChatFilter, MessagesFilter, ChatFilter
+from app.filters.filters_chat import StopChatFilter, ChatFilter
 from app.database.CRUDs.delete_dialogue import delete_dialogue
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.config.settings import anonymous_bot
