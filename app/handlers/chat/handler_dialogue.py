@@ -1,14 +1,14 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from app.filters.filters_chat import MessagesFilter, CharFilter
+from app.filters.filters_chat import MessagesFilter, ChatFilter
 from app.config.settings import anonymous_bot
 
 
 router = Router(name=__name__)
 
 
-@router.message(CharFilter(), MessagesFilter())
+@router.message(ChatFilter(), MessagesFilter())
 async def handler_messages_dialog(message: Message, companion_id: int) -> None:
     """
     Асинхронный обработчик сообщений пользователей, которые разговаривают с кем-либо.

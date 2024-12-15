@@ -1,5 +1,5 @@
 from aiogram.filters import Filter
-from aiogram.types import Message
+from aiogram.types import Message, TelegramObject
 
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.database.CRUDs.select_users import selects_user
@@ -46,7 +46,7 @@ class SearchFilter(Filter):
             return message
 
 
-class CharFilter(Filter):
+class ChatFilter(Filter):
     async def __call__(self, message: Message) -> dict[str, int] | None:
         """
         Асинхронный фильтр сообщений пользователя, которые состоят в диалоге с кем-либо.
