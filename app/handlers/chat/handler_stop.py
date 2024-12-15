@@ -14,4 +14,3 @@ async def handler_stop_dialogue(message: Message) -> None:
 
     :param message: Объект класса Message.
     """
-    pass
