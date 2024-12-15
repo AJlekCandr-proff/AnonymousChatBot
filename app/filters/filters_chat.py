@@ -1,5 +1,5 @@
 from aiogram.filters import Filter
-from aiogram.types import Message, TelegramObject
+from aiogram.types import Message
 
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.database.CRUDs.select_users import selects_user
