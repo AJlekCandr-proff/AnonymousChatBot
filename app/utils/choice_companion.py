@@ -6,6 +6,7 @@ from aiogram.types import Message
 
 from app.validation.model_user import User
 from app.database.CRUDs.select_users import selects_users
+from app.database.CRUDs.select_dialogue import select_dialog
 from app.config.settings import my_logger, views
 
 
@@ -33,13 +34,16 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
                 dialog.append(companion)
 
                 my_logger.info(f'Нашлись 2 собеседника для диалога: {[companion.telegram_id, user.telegram_id]}')
-
+                print(message.from_user.id)
                 return dialog
 
             else:
                 my_logger.info(f'По случайности с пользователем {user.telegram_id} произошла ошибка в поиске!')
 
         else:
+            if await select_dialog(user.telegram_id):
+                return
+
             await asyncio.sleep(5)
 
             my_logger.info('Недостаточно пользователей в базе данных, повторный поиск...')

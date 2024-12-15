@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from app.filters.filters_chat import StopChatFilter
+from app.filters.filters_chat import StopChatFilter, MessagesFilter, CharFilter
 from app.database.CRUDs.delete_dialogue import delete_dialogue
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.config.settings import anonymous_bot
@@ -11,7 +11,7 @@ from app.keyboards.menu_keyboards import start_menu
 router = Router(name=__name__)
 
 
-@router.message(StopChatFilter())
+@router.message(StopChatFilter(), CharFilter())
 async def handler_stop_dialogue(message: Message) -> None:
     """
     Асинхронный обработчик нажатия кнопки "Стоп ❌".
