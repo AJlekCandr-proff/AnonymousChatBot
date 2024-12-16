@@ -2,7 +2,7 @@ from aiogram.filters import Filter
 from aiogram.types import Message
 
 from app.database.CRUDs.select_dialogue import select_dialog
-# from app.database.CRUDs.select_users import selects_user
+from app.database.CRUDs.select_users import selects_user
 
 
 class StartSearchFilter(Filter):
@@ -43,8 +43,10 @@ class SearchFilter(Filter):
         :return: Объект класса Message, либо None.
         """
 
-        # if await selects_user(message.from_user.id) is None:
-        #     return message
+        current_user = await selects_user(message.from_user.id)
+
+        if current_user.in_search is False:
+            return message
 
 
 class ChatFilter(Filter):

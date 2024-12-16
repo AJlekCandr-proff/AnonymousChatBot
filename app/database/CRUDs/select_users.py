@@ -24,7 +24,7 @@ async def selects_users() -> list[Profiles]:
         my_logger.error(f'Ошибка при извлечении пользователей в базе данных {error}')
 
 
-async def selects_user(user_id: int):
+async def selects_user(user_id: int) -> Profiles:
     """
     Асинхронная функция для проверки наличия пользователя в поиске собеседника.
 
