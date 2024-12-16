@@ -1,5 +1,5 @@
 from aiogram import Router
-from aiogram.types import Message, InputFile
+from aiogram.types import Message
 
 from app.filters.filters_chat import MessagesFilter, ChatFilter
 from app.config.settings import anonymous_bot
