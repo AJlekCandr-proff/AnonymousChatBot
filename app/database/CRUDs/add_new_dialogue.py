@@ -1,6 +1,6 @@
 from asyncpg import UniqueViolationError
 
-from sqlalchemy import insert, update
+from sqlalchemy import insert
 from sqlalchemy.exc import IntegrityError
 
 from app.config.settings import my_logger, async_session
