@@ -5,7 +5,7 @@ from app.config.settings import async_session, my_logger
 from app.validation.model_user import User
 
 
-async def selects_users() -> list[Profiles]:
+async def select_users() -> list[Profiles]:
     """
     Асинхронная функция для извлечения пользователей, которые находятся в поиске собеседника.
 

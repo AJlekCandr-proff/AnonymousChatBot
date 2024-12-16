@@ -5,7 +5,7 @@ import random
 from aiogram.types import Message
 
 from app.validation.model_user import User
-from app.database.CRUDs.select_users import selects_users
+from app.database.CRUDs.select_users import select_users
 from app.database.CRUDs.select_dialogue import select_dialog
 from app.config.settings import my_logger, views
 
@@ -22,7 +22,7 @@ async def choice_companion(message: Message, user: User) -> tuple[User, User]:
 
     dialog = [user]
 
-    users = await selects_users()
+    users = await select_users()
 
     await message.answer(text=views.get('error_search')) if len(users) > 1 else None
 
