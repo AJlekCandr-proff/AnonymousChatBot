@@ -26,16 +26,17 @@ async def add_new_user(user: User) -> None:
         my_logger.error(f'При регистрации пользователя возникла ошибка: {error}')
 
 
-async def add_user_in_search(user: User) -> None:
+async def update_user_status(user: User, in_search_state: bool) -> None:
     """
     Асинхронная функция добавления пользователя в поиск собеседника.
 
     :param user: Объект класса User.
+    :param in_search_state: Константа True или False.
     """
 
     try:
         async with async_session() as session:
-            query = update(Profiles).values(in_search=True).where(Profiles.telegram_id == user.telegram_id)
+            query = update(Profiles).values(in_search=in_search_state).where(Profiles.telegram_id == user.telegram_id)
 
             await session.execute(query)
 
