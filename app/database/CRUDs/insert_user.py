@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 
 from app.validation.model_user import User
 from app.config.settings import async_session, my_logger
-from app.database.models import *
+# from app.database.models
 
 
 async def add_user(user: User) -> None:
@@ -18,9 +18,9 @@ async def add_user(user: User) -> None:
 
     try:
         async with async_session() as session:
-            query = insert(SearchCompanion).values(user.model_dump())
+            # query = insert(SearchCompanion).values(user.model_dump())
 
-            await session.execute(query)
+            # await session.execute(query)
 
             await session.commit()
 

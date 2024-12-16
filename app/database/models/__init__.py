@@ -1,6 +1,6 @@
 from .base import Base
 
-from .users import SearchCompanion
+from .users import Profiles
 
 
-__all__ = ('Base', 'SearchCompanion')
+__all__ = ('Base', 'Profiles')

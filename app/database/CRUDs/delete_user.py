@@ -1,7 +1,7 @@
 from sqlalchemy import delete
 
 from app.config.settings import async_session, my_logger
-from app.database.models.users import SearchCompanion
+# from app.database.models.users import SearchCompanion
 
 
 async def delete_user_in_search(user_id: int) -> None:
@@ -13,9 +13,9 @@ async def delete_user_in_search(user_id: int) -> None:
 
     try:
         async with async_session() as session:
-            query = delete(SearchCompanion).where(SearchCompanion.telegram_id == user_id)
+            # query = delete(SearchCompanion).where(SearchCompanion.telegram_id == user_id)
 
-            await session.execute(query)
+            # await session.execute(query)
 
             await session.commit()
 
